@@ -1,0 +1,60 @@
+{
+  "id": "css-flex-toolbar-base",
+  "topic": "css",
+  "type": "visual-match",
+  "title": "Flex pequeno: barra de acciones",
+  "difficulty": "base",
+  "estimatedMinutes": 10,
+  "publishedAt": "2026-05-18T15:36:22+02:00",
+  "prompt": "Ejercicio pequeno. Usa Flexbox para colocar el titulo a la izquierda y las acciones a la derecha. Los botones deben quedar en fila con separacion uniforme y la barra debe envolver los controles si no caben.",
+  "notes": [
+    "Aplica display flex a .toolbar y a .acciones.",
+    "flex-wrap ayuda cuando el ancho es pequeno."
+  ],
+  "starterCode": {
+    "html": "<header class=\"toolbar\">\n  <h1>Practicas</h1>\n  <nav class=\"acciones\" aria-label=\"Acciones\">\n    <button>Nuevo</button>\n    <button>Editar</button>\n    <button>Guardar</button>\n  </nav>\n</header>",
+    "css": "body { margin: 0; font-family: system-ui, sans-serif; background: #f7fafc; }\n.toolbar { padding: 16px; border-bottom: 1px solid #d8e0ea; background: white; }\nh1 { margin: 0; font-size: 1.25rem; }\nbutton { border: 1px solid #c8d2df; background: #f8fafc; border-radius: 6px; padding: 8px 12px; }\n",
+    "javascript": ""
+  },
+  "targetCode": {
+    "html": "<header class=\"toolbar\">\n  <h1>Practicas</h1>\n  <nav class=\"acciones\" aria-label=\"Acciones\">\n    <button>Nuevo</button>\n    <button>Editar</button>\n    <button>Guardar</button>\n  </nav>\n</header>",
+    "css": "body { margin: 0; font-family: system-ui, sans-serif; background: #f7fafc; }\n.toolbar { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; padding: 16px; border-bottom: 1px solid #d8e0ea; background: white; }\nh1 { margin: 0; font-size: 1.25rem; }\n.acciones { display: flex; gap: 8px; flex-wrap: wrap; }\nbutton { border: 1px solid #c8d2df; background: #f8fafc; border-radius: 6px; padding: 8px 12px; }\n",
+    "javascript": ""
+  },
+  "validation": {
+    "mode": "all",
+    "successMessage": "Barra de acciones alineada con Flexbox.",
+    "rules": [
+      {
+        "type": "regex",
+        "field": "css",
+        "pattern": "\\.toolbar\\s*\\{[\\s\\S]*display\\s*:\\s*flex",
+        "message": "Usa display flex en .toolbar."
+      },
+      {
+        "type": "regex",
+        "field": "css",
+        "pattern": "align-items\\s*:\\s*center",
+        "message": "Centra verticalmente los elementos."
+      },
+      {
+        "type": "regex",
+        "field": "css",
+        "pattern": "justify-content\\s*:\\s*space-between",
+        "message": "Separa titulo y acciones con space-between."
+      },
+      {
+        "type": "regex",
+        "field": "css",
+        "pattern": "flex-wrap\\s*:\\s*wrap",
+        "message": "Permite que la barra envuelva elementos."
+      },
+      {
+        "type": "regex",
+        "field": "css",
+        "pattern": "\\.acciones\\s*\\{[\\s\\S]*display\\s*:\\s*flex",
+        "message": "Usa flex tambien en .acciones."
+      }
+    ]
+  }
+}

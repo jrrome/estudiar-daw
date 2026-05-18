@@ -104,6 +104,7 @@ export type Exercise = {
   title: string;
   difficulty: "base" | "media" | "reto";
   estimatedMinutes: number;
+  publishedAt?: string;
   prompt: string;
   notes?: string[];
   assets?: ExerciseAsset[];

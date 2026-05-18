@@ -1,0 +1,73 @@
+{
+  "id": "javascript-fetch-panel-pedidos-media",
+  "topic": "javascript",
+  "type": "build",
+  "title": "Fetch: panel de pedidos",
+  "difficulty": "media",
+  "estimatedMinutes": 28,
+  "publishedAt": "2026-05-18T15:36:22+02:00",
+  "prompt": "Ejercicio grande. Carga pedidos desde https://jsonplaceholder.typicode.com/todos?_limit=8 usando fetch y async/await. Comprueba response.ok, convierte a JSON, pinta una tarjeta por pedido dentro de #pedidos y calcula en #resumen cuantos estan completados. Si falla la peticion, muestra un mensaje en #estado.",
+  "notes": [
+    "Aunque la API devuelva tareas, tratalas como pedidos para practicar renderizado.",
+    "Usa map o forEach para construir las tarjetas."
+  ],
+  "starterCode": {
+    "html": "<main>\n  <header>\n    <h1>Pedidos</h1>\n    <button id=\"cargar\">Cargar pedidos</button>\n  </header>\n  <p id=\"estado\">Sin cargar</p>\n  <p id=\"resumen\"></p>\n  <section id=\"pedidos\" aria-live=\"polite\"></section>\n</main>",
+    "css": "body { font-family: system-ui, sans-serif; margin: 0; padding: 24px; background: #eef2f6; color: #172033; }\nmain { max-width: 920px; margin: auto; }\nheader { display: flex; align-items: center; justify-content: space-between; gap: 16px; }\nbutton { padding: 9px 14px; border: 0; border-radius: 6px; background: #2563eb; color: white; }\n#pedidos { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-top: 16px; }\n.pedido { padding: 14px; border: 1px solid #d7dee9; border-radius: 8px; background: white; }\n.completado { border-color: #16a34a; }\n",
+    "javascript": "const boton = document.querySelector('#cargar');\nconst estado = document.querySelector('#estado');\nconst resumen = document.querySelector('#resumen');\nconst pedidos = document.querySelector('#pedidos');\n\n// Crea una funcion async para cargar y pintar los pedidos.\n"
+  },
+  "validation": {
+    "mode": "all",
+    "successMessage": "Panel de pedidos cargado con fetch.",
+    "rules": [
+      {
+        "type": "regex",
+        "field": "javascript",
+        "pattern": "async\\s+function|async\\s*\\(",
+        "message": "Usa una funcion async."
+      },
+      {
+        "type": "regex",
+        "field": "javascript",
+        "pattern": "fetch\\s*\\(",
+        "message": "Usa fetch para pedir los pedidos."
+      },
+      {
+        "type": "regex",
+        "field": "javascript",
+        "pattern": "await\\s+fetch",
+        "message": "Espera la llamada fetch con await."
+      },
+      {
+        "type": "regex",
+        "field": "javascript",
+        "pattern": "response\\.ok|respuesta\\.ok",
+        "message": "Comprueba que la respuesta sea correcta con .ok."
+      },
+      {
+        "type": "regex",
+        "field": "javascript",
+        "pattern": "\\.json\\s*\\(\\s*\\)",
+        "message": "Convierte la respuesta con .json()."
+      },
+      {
+        "type": "regex",
+        "field": "javascript",
+        "pattern": "filter\\s*\\(",
+        "message": "Calcula los completados con filter."
+      },
+      {
+        "type": "regex",
+        "field": "javascript",
+        "pattern": "map\\s*\\(|forEach\\s*\\(",
+        "message": "Recorre los pedidos para renderizarlos."
+      },
+      {
+        "type": "regex",
+        "field": "javascript",
+        "pattern": "try\\s*\\{[\\s\\S]*catch",
+        "message": "Gestiona errores con try/catch."
+      }
+    ]
+  }
+}

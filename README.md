@@ -91,6 +91,7 @@ La app soporta estos tipos:
   "title": "Titulo breve",
   "difficulty": "base",
   "estimatedMinutes": 15,
+  "publishedAt": "2026-05-18T15:36:22+02:00",
   "prompt": "Enunciado del ejercicio",
   "notes": ["Pista opcional"],
   "starterCode": {
@@ -113,6 +114,7 @@ Valores soportados:
 - `topic`: `html`, `css`, `javascript`, `jsp`, `servlets`, `examen`
 - `type`: `build`, `visual-match`, `written-answer`, `table-answer`
 - `difficulty`: `base`, `media`, `reto`
+- `publishedAt`: opcional; muestra la badge `Nuevo` durante 24 horas desde esa fecha ISO.
 
 ## Validaciones disponibles
 

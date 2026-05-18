@@ -12,6 +12,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
+import { isNewExercise } from "@/lib/exerciseFreshness";
 import { cn } from "@/lib/utils";
 import type { Exercise, ExerciseProgress, Topic } from "../lib/types";
 
@@ -22,6 +23,7 @@ type ExerciseListProps = {
   progressById: Record<string, ExerciseProgress>;
   repositoryUrl: string;
   customExerciseCount: number;
+  now: number;
   onTopicChange: (topic: Topic | "todos") => void;
   onSelect: (exercise: Exercise) => void;
   onImportExercises: (files: FileList | null) => void;
@@ -54,6 +56,7 @@ export default function ExerciseList({
   progressById,
   repositoryUrl,
   customExerciseCount,
+  now,
   onTopicChange,
   onSelect,
   onImportExercises,
@@ -162,6 +165,7 @@ export default function ExerciseList({
           {filteredExercises.map((exercise) => {
             const progress = progressById[exercise.id];
             const isActive = selectedId === exercise.id;
+            const isNew = isNewExercise(exercise, now);
 
             return (
               <button
@@ -191,11 +195,16 @@ export default function ExerciseList({
                     <span className="opacity-50">·</span>
                     <span className="capitalize">{exercise.difficulty}</span>
                   </span>
-                  {progress?.completed ? (
-                    <Badge variant="success" className="mt-1 w-fit">
-                      <CheckCircle2 size={12} aria-hidden />
-                      Hecho
-                    </Badge>
+                  {isNew || progress?.completed ? (
+                    <span className="mt-1 flex flex-wrap gap-1">
+                      {isNew ? <Badge>Nuevo</Badge> : null}
+                      {progress?.completed ? (
+                        <Badge variant="success">
+                          <CheckCircle2 size={12} aria-hidden />
+                          Hecho
+                        </Badge>
+                      ) : null}
+                    </span>
                   ) : null}
                 </span>
               </button>

@@ -1,0 +1,61 @@
+{
+  "id": "javascript-xml-json-ajax-conversor-base",
+  "topic": "javascript",
+  "type": "build",
+  "title": "Mini AJAX: XML a JSON",
+  "difficulty": "base",
+  "estimatedMinutes": 12,
+  "publishedAt": "2026-05-18T15:36:22+02:00",
+  "prompt": "Ejercicio pequeno. Simula una respuesta AJAX en XML usando DOMParser, lee el nombre y los creditos del modulo, crea un objeto JavaScript y muestra su version JSON en #salida con JSON.stringify. Tambien debes actualizar #nombre y #creditos.",
+  "notes": [
+    "No hace falta hacer una peticion real: aqui el objetivo es practicar XML, objetos y JSON.",
+    "DOMParser devuelve un documento sobre el que puedes usar querySelector."
+  ],
+  "starterCode": {
+    "html": "<main>\n  <h1>Modulo</h1>\n  <button id=\"convertir\">Convertir XML</button>\n  <dl>\n    <dt>Nombre</dt>\n    <dd id=\"nombre\">Pendiente</dd>\n    <dt>Creditos</dt>\n    <dd id=\"creditos\">Pendiente</dd>\n  </dl>\n  <pre id=\"salida\"></pre>\n</main>",
+    "css": "body { font-family: system-ui, sans-serif; padding: 24px; background: #f6f8fb; }\nmain { max-width: 520px; margin: auto; }\nbutton { padding: 8px 12px; }\npre { min-height: 80px; padding: 12px; background: #111827; color: #d1fae5; border-radius: 8px; white-space: pre-wrap; }\ndl { display: grid; grid-template-columns: max-content 1fr; gap: 8px 14px; }\n",
+    "javascript": "const xmlTexto = `<modulo>\n  <nombre>Desarrollo web en cliente</nombre>\n  <creditos>8</creditos>\n</modulo>`;\n\nconst boton = document.querySelector('#convertir');\nconst nombre = document.querySelector('#nombre');\nconst creditos = document.querySelector('#creditos');\nconst salida = document.querySelector('#salida');\n\n// Convierte el XML a un objeto y despues a JSON.\n"
+  },
+  "validation": {
+    "mode": "all",
+    "successMessage": "XML convertido a JSON.",
+    "rules": [
+      {
+        "type": "regex",
+        "field": "javascript",
+        "pattern": "new\\s+DOMParser\\s*\\(",
+        "message": "Crea un DOMParser."
+      },
+      {
+        "type": "regex",
+        "field": "javascript",
+        "pattern": "parseFromString\\s*\\(\\s*xmlTexto\\s*,\\s*['\\\"]text/xml['\\\"]",
+        "message": "Parsea xmlTexto como text/xml."
+      },
+      {
+        "type": "regex",
+        "field": "javascript",
+        "pattern": "querySelector\\s*\\(\\s*['\\\"]nombre['\\\"]\\s*\\)",
+        "message": "Lee el nodo nombre del XML."
+      },
+      {
+        "type": "regex",
+        "field": "javascript",
+        "pattern": "querySelector\\s*\\(\\s*['\\\"]creditos['\\\"]\\s*\\)",
+        "message": "Lee el nodo creditos del XML."
+      },
+      {
+        "type": "regex",
+        "field": "javascript",
+        "pattern": "JSON\\.stringify\\s*\\(",
+        "message": "Convierte el objeto resultante a JSON."
+      },
+      {
+        "type": "regex",
+        "field": "javascript",
+        "pattern": "textContent|innerHTML",
+        "message": "Pinta los datos en la pagina."
+      }
+    ]
+  }
+}

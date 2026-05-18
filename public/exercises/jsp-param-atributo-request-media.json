@@ -1,0 +1,77 @@
+{
+  "id": "jsp-param-atributo-request-media",
+  "topic": "jsp",
+  "type": "build",
+  "title": "JSP: parametro y atributo request",
+  "difficulty": "media",
+  "estimatedMinutes": 22,
+  "publishedAt": "2026-05-18T15:36:22+02:00",
+  "prompt": "Practica como establecer y leer datos desde JSP. En la JSP, lee el parametro nombre con request.getParameter, si viene vacio usa Invitado, guardalo como atributo request con request.setAttribute(\"usuario\", nombre) y muestralo con EL usando ${usuario}. Incluye tambien un formulario GET con input name=\"nombre\". Evita imprimir directamente con out.println.",
+  "notes": [
+    "Este ejercicio usa scriptlet de forma intencionada para practicar request.getParameter y request.setAttribute.",
+    "La salida final debe hacerse con EL, no con out.println."
+  ],
+  "editor": {
+    "labels": {
+      "html": "JSP",
+      "javascript": "Servlet / Java"
+    },
+    "languages": {
+      "html": "html",
+      "javascript": "java"
+    },
+    "initialFile": "html"
+  },
+  "starterCode": {
+    "html": "<%@ page contentType=\"text/html; charset=UTF-8\" pageEncoding=\"UTF-8\" %>\n<!DOCTYPE html>\n<html lang=\"es\">\n<body>\n  <h1>Saludo</h1>\n  <form method=\"get\">\n    <label>Nombre <input name=\"nombre\"></label>\n    <button>Enviar</button>\n  </form>\n  <!-- Lee el parametro, guarda el atributo request y muestra ${usuario}. -->\n</body>\n</html>",
+    "css": "",
+    "javascript": ""
+  },
+  "validation": {
+    "mode": "all",
+    "successMessage": "Parametro convertido en atributo request.",
+    "rules": [
+      {
+        "type": "domSelector",
+        "selector": "form[method='get'] input[name='nombre']",
+        "message": "Incluye un formulario GET con input name=\"nombre\"."
+      },
+      {
+        "type": "regex",
+        "field": "html",
+        "pattern": "request\\.getParameter\\s*\\(\\s*['\\\"]nombre['\\\"]\\s*\\)",
+        "message": "Lee el parametro nombre con request.getParameter."
+      },
+      {
+        "type": "regex",
+        "field": "html",
+        "pattern": "(==\\s*null|\\.isEmpty\\s*\\(\\s*\\)|\\.trim\\s*\\(\\s*\\)\\.isEmpty\\s*\\(\\s*\\))",
+        "message": "Controla el caso en que el parametro venga vacio o no exista."
+      },
+      {
+        "type": "contains",
+        "field": "html",
+        "value": "Invitado",
+        "message": "Usa Invitado como valor por defecto."
+      },
+      {
+        "type": "regex",
+        "field": "html",
+        "pattern": "request\\.setAttribute\\s*\\(\\s*['\\\"]usuario['\\\"]\\s*,",
+        "message": "Guarda el valor como atributo request llamado usuario."
+      },
+      {
+        "type": "contains",
+        "field": "html",
+        "value": "${usuario}",
+        "message": "Muestra el atributo con EL: ${usuario}."
+      },
+      {
+        "type": "notContains",
+        "field": "html",
+        "value": "out.println",
+        "message": "No imprimas con out.println; usa EL."
+      }
+    ]
+  }
+}

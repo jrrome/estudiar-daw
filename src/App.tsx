@@ -45,6 +45,7 @@ import {
   parseExerciseDocuments,
   saveCustomExercises,
 } from "@/lib/customExerciseStore";
+import { isNewExercise } from "@/lib/exerciseFreshness";
 import { loadExercises } from "@/lib/exerciseLoader";
 import {
   loadProgress,
@@ -78,6 +79,7 @@ const autocompleteDisabledStorageKey = "daw-lab:autocomplete-disabled";
 const previewLayoutStorageKey = "daw-lab:preview-layout";
 const appThemeStorageKey = "daw-lab:app-theme";
 const sidebarHiddenStorageKey = "daw-lab:sidebar-hidden";
+const freshnessTickIntervalMs = 60 * 1000;
 const repositoryUrl = "https://github.com/chevilan/estudiar-daw";
 
 const topicLabels: Record<Topic, string> = {
@@ -301,6 +303,7 @@ function renderGlossaryMarkdown(markdown: string) {
 
 export default function App() {
   const [exercises, setExercises] = useState<Exercise[]>([]);
+  const [now, setNow] = useState(() => Date.now());
   const [bundledExerciseIds, setBundledExerciseIds] = useState<Set<string>>(
     () => new Set(),
   );
@@ -331,6 +334,14 @@ export default function App() {
   const [glossaryMarkdown, setGlossaryMarkdown] = useState("");
   const [glossaryError, setGlossaryError] = useState<string | null>(null);
   const [sidebarHidden, setSidebarHidden] = useState(loadSidebarHidden);
+
+  useEffect(() => {
+    const intervalId = window.setInterval(() => {
+      setNow(Date.now());
+    }, freshnessTickIntervalMs);
+
+    return () => window.clearInterval(intervalId);
+  }, []);
 
   useEffect(() => {
     let isMounted = true;
@@ -671,6 +682,7 @@ export default function App() {
 
   const hasTarget = Boolean(selectedExercise.targetCode);
   const currentProgress = progressById[selectedExercise.id];
+  const isSelectedExerciseNew = isNewExercise(selectedExercise, now);
   const isServerSideExercise = isServerSideTopic(selectedExercise.topic);
   const canShowPreview = !isServerSideExercise && isPreviewType(selectedExercise);
   const exerciseFileLabels = getExerciseFileLabels(selectedExercise);
@@ -702,6 +714,7 @@ export default function App() {
             progressById={progressById}
             repositoryUrl={repositoryUrl}
             customExerciseCount={customExerciseIds.size}
+            now={now}
             onTopicChange={setTopic}
             onSelect={handleSelectExercise}
             onImportExercises={handleImportExercises}
@@ -885,6 +898,7 @@ export default function App() {
                   Subido
                 </Badge>
               ) : null}
+              {isSelectedExerciseNew ? <Badge>Nuevo</Badge> : null}
               <Badge variant="muted">
                 {getExerciseTypeLabel(selectedExercise.type)}
               </Badge>

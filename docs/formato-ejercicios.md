@@ -10,6 +10,7 @@ Ejemplo minimo:
   "title": "Lista semantica",
   "difficulty": "base",
   "estimatedMinutes": 8,
+  "publishedAt": "2026-05-18T15:36:22+02:00",
   "prompt": "Crea una lista de recursos con nav, ul, li y enlaces.",
   "notes": ["Usa enlaces reales o # si estas practicando."],
   "starterCode": {
@@ -132,6 +133,9 @@ Valores de `type` soportados:
 - `visual-match`
 - `written-answer`
 - `table-answer`
+
+`publishedAt` es opcional. Si contiene una fecha ISO valida, la app muestra
+la badge `Nuevo` durante las primeras 24 horas desde esa fecha.
 
 Los ejercicios de JSP y Servlets usan los mismos campos `starterCode.html`, `starterCode.css` y `starterCode.javascript`, pero la interfaz cambia las etiquetas para que funcionen como archivos de practica. Por ejemplo, en Servlets se usan como `JSP`, `web.xml` y `Servlet.java`. Tambien se desactiva la preview de iframe y se muestra un panel estructural porque el laboratorio no arranca un contenedor Java.
 

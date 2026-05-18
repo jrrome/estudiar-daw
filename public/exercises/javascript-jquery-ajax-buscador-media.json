@@ -1,0 +1,73 @@
+{
+  "id": "javascript-jquery-ajax-buscador-media",
+  "topic": "javascript",
+  "type": "build",
+  "title": "jQuery AJAX: buscador de usuarios",
+  "difficulty": "media",
+  "estimatedMinutes": 24,
+  "publishedAt": "2026-05-18T15:36:22+02:00",
+  "prompt": "Crea un buscador con jQuery. Al pulsar #buscar, usa $.ajax para pedir https://jsonplaceholder.typicode.com/users, filtra por el texto escrito en #filtro y pinta en #resultados un <li> por cada coincidencia con nombre y email. Mientras carga, muestra Cargando... en #estado y usa .fail para mostrar un error.",
+  "notes": [
+    "Puedes filtrar con includes sobre name o email.",
+    "Recuerda limpiar la lista antes de pintar nuevos resultados."
+  ],
+  "starterCode": {
+    "html": "<script src=\"https://code.jquery.com/jquery-3.7.1.min.js\"></script>\n<main>\n  <h1>Buscador</h1>\n  <label>Filtro <input id=\"filtro\" placeholder=\"Leanne\"></label>\n  <button id=\"buscar\">Buscar</button>\n  <p id=\"estado\"></p>\n  <ul id=\"resultados\"></ul>\n</main>",
+    "css": "body { font-family: system-ui, sans-serif; padding: 24px; background: #fafafa; }\nmain { max-width: 560px; margin: auto; }\ninput, button { padding: 8px 10px; }\nul { padding-left: 20px; }\nli { margin: 8px 0; }\n",
+    "javascript": "// Implementa aqui el buscador con jQuery y $.ajax.\n"
+  },
+  "validation": {
+    "mode": "all",
+    "successMessage": "Buscador AJAX con jQuery listo.",
+    "rules": [
+      {
+        "type": "regex",
+        "field": "javascript",
+        "pattern": "\\$\\s*\\(\\s*['\\\"]#buscar['\\\"]\\s*\\)\\.on\\s*\\(\\s*['\\\"]click['\\\"]",
+        "message": "Registra el click con jQuery."
+      },
+      {
+        "type": "regex",
+        "field": "javascript",
+        "pattern": "\\$\\.ajax\\s*\\(",
+        "message": "Usa $.ajax."
+      },
+      {
+        "type": "regex",
+        "field": "javascript",
+        "pattern": "url\\s*:\\s*['\\\"]https://jsonplaceholder\\.typicode\\.com/users['\\\"]",
+        "message": "Configura la URL de usuarios."
+      },
+      {
+        "type": "regex",
+        "field": "javascript",
+        "pattern": "\\.done\\s*\\(",
+        "message": "Procesa la respuesta con .done."
+      },
+      {
+        "type": "regex",
+        "field": "javascript",
+        "pattern": "\\.fail\\s*\\(",
+        "message": "Gestiona errores con .fail."
+      },
+      {
+        "type": "regex",
+        "field": "javascript",
+        "pattern": "filter\\s*\\(",
+        "message": "Filtra los usuarios antes de pintarlos."
+      },
+      {
+        "type": "regex",
+        "field": "javascript",
+        "pattern": "\\$\\s*\\(\\s*['\\\"]#resultados['\\\"]\\s*\\)\\.(empty|html)\\s*\\(",
+        "message": "Limpia la lista de resultados."
+      },
+      {
+        "type": "regex",
+        "field": "javascript",
+        "pattern": "\\.append\\s*\\(",
+        "message": "Anade resultados a la lista."
+      }
+    ]
+  }
+}

@@ -87,6 +87,7 @@ function parseExerciseDocument(value: unknown): Exercise {
     title,
     difficulty,
     estimatedMinutes,
+    publishedAt,
     prompt,
     notes,
     assets,
@@ -150,6 +151,7 @@ function parseExerciseDocument(value: unknown): Exercise {
     title,
     difficulty: difficulty as Exercise["difficulty"],
     estimatedMinutes,
+    publishedAt: typeof publishedAt === "string" ? publishedAt : undefined,
     prompt,
     notes: Array.isArray(notes) ? notes.filter((note) => typeof note === "string") : undefined,
     assets: Array.isArray(assets)

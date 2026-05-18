@@ -1,0 +1,66 @@
+{
+  "id": "css-grid-dashboard-reto",
+  "topic": "css",
+  "type": "visual-match",
+  "title": "Grid grande: panel de metricas",
+  "difficulty": "reto",
+  "estimatedMinutes": 32,
+  "publishedAt": "2026-05-18T15:36:22+02:00",
+  "prompt": "Ejercicio grande. Reorganiza el dashboard usando CSS Grid: el contenedor .dashboard debe tener dos columnas, la tarjeta .resumen debe ocupar las dos columnas, y la seccion .detalle debe usar subgrid o un grid interno con tarjetas fluidas. En pantallas pequenas todo debe quedar en una columna.",
+  "notes": [
+    "Puedes usar grid-template-columns: repeat(2, minmax(0, 1fr)).",
+    "La regla @media debe convertir el dashboard a una columna."
+  ],
+  "starterCode": {
+    "html": "<main class=\"dashboard\">\n  <section class=\"resumen\">\n    <h1>Ventas del mes</h1>\n    <p>42 pedidos cerrados</p>\n  </section>\n  <article class=\"card\"><span>Ingresos</span><strong>18.450 EUR</strong></article>\n  <article class=\"card\"><span>Conversion</span><strong>7,8%</strong></article>\n  <section class=\"detalle\">\n    <article>HTML <strong>12</strong></article>\n    <article>CSS <strong>18</strong></article>\n    <article>JS <strong>12</strong></article>\n  </section>\n</main>",
+    "css": "body { margin: 0; font-family: system-ui, sans-serif; background: #e9eef5; color: #172033; }\n.dashboard { max-width: 920px; margin: 32px auto; padding: 16px; }\n.resumen, .card, .detalle article { border: 1px solid #ccd6e4; background: white; border-radius: 8px; padding: 18px; }\n.resumen { background: #123047; color: white; }\n.card strong, .detalle strong { display: block; margin-top: 8px; font-size: 1.5rem; }\n.detalle { margin-top: 0; }\n",
+    "javascript": ""
+  },
+  "targetCode": {
+    "html": "<main class=\"dashboard\">\n  <section class=\"resumen\">\n    <h1>Ventas del mes</h1>\n    <p>42 pedidos cerrados</p>\n  </section>\n  <article class=\"card\"><span>Ingresos</span><strong>18.450 EUR</strong></article>\n  <article class=\"card\"><span>Conversion</span><strong>7,8%</strong></article>\n  <section class=\"detalle\">\n    <article>HTML <strong>12</strong></article>\n    <article>CSS <strong>18</strong></article>\n    <article>JS <strong>12</strong></article>\n  </section>\n</main>",
+    "css": "body { margin: 0; font-family: system-ui, sans-serif; background: #e9eef5; color: #172033; }\n.dashboard { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; max-width: 920px; margin: 32px auto; padding: 16px; }\n.resumen, .card, .detalle article { border: 1px solid #ccd6e4; background: white; border-radius: 8px; padding: 18px; }\n.resumen { grid-column: 1 / -1; background: #123047; color: white; }\n.card strong, .detalle strong { display: block; margin-top: 8px; font-size: 1.5rem; }\n.detalle { display: grid; grid-column: 1 / -1; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin-top: 0; }\n@media (max-width: 640px) { .dashboard { grid-template-columns: 1fr; } }\n",
+    "javascript": ""
+  },
+  "validation": {
+    "mode": "all",
+    "successMessage": "Dashboard maquetado con Grid.",
+    "rules": [
+      {
+        "type": "regex",
+        "field": "css",
+        "pattern": "\\.dashboard\\s*\\{[\\s\\S]*display\\s*:\\s*grid",
+        "message": "Convierte .dashboard en grid."
+      },
+      {
+        "type": "regex",
+        "field": "css",
+        "pattern": "grid-template-columns\\s*:\\s*repeat\\s*\\(\\s*2\\s*,",
+        "message": "Define dos columnas principales."
+      },
+      {
+        "type": "regex",
+        "field": "css",
+        "pattern": "\\.resumen\\s*\\{[\\s\\S]*grid-column\\s*:\\s*1\\s*/\\s*-1",
+        "message": "Haz que .resumen ocupe todo el ancho."
+      },
+      {
+        "type": "regex",
+        "field": "css",
+        "pattern": "\\.detalle\\s*\\{[\\s\\S]*display\\s*:\\s*grid",
+        "message": "Usa grid tambien en .detalle."
+      },
+      {
+        "type": "regex",
+        "field": "css",
+        "pattern": "repeat\\s*\\(\\s*auto-fit\\s*,\\s*minmax",
+        "message": "Crea columnas fluidas con repeat(auto-fit, minmax())."
+      },
+      {
+        "type": "regex",
+        "field": "css",
+        "pattern": "@media\\s*\\([^)]*max-width[\\s\\S]*grid-template-columns\\s*:\\s*1fr",
+        "message": "Incluye una media query para una columna en movil."
+      }
+    ]
+  }
+}

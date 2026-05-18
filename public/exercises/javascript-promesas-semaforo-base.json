@@ -1,0 +1,61 @@
+{
+  "id": "javascript-promesas-semaforo-base",
+  "topic": "javascript",
+  "type": "build",
+  "title": "Promesa pequena: semaforo",
+  "difficulty": "base",
+  "estimatedMinutes": 14,
+  "publishedAt": "2026-05-18T15:36:22+02:00",
+  "prompt": "Ejercicio pequeno. Crea una funcion esperarVerde que devuelva una Promise. La promesa debe resolverse con el texto Verde despues de un setTimeout de 1000 ms. Al pulsar #iniciar, muestra Esperando... y despues encadena .then para pintar el resultado en #estado. Anade .catch aunque no lances error.",
+  "notes": [
+    "La estructura minima es new Promise((resolve, reject) => { ... }).",
+    "Encadena then y catch sobre la llamada a esperarVerde()."
+  ],
+  "starterCode": {
+    "html": "<main>\n  <h1>Semaforo</h1>\n  <button id=\"iniciar\">Iniciar</button>\n  <p id=\"estado\">Rojo</p>\n</main>",
+    "css": "body { font-family: system-ui, sans-serif; display: grid; min-height: 100vh; place-items: center; margin: 0; background: #f3f6fb; }\nmain { width: min(360px, calc(100% - 32px)); border: 1px solid #d7dee8; border-radius: 8px; padding: 20px; background: white; text-align: center; }\nbutton { padding: 8px 12px; }\n#estado { font-size: 1.4rem; font-weight: 700; }\n",
+    "javascript": "const boton = document.querySelector('#iniciar');\nconst estado = document.querySelector('#estado');\n\n// Crea esperarVerde y usala al pulsar el boton.\n"
+  },
+  "validation": {
+    "mode": "all",
+    "successMessage": "Promesa del semaforo resuelta.",
+    "rules": [
+      {
+        "type": "regex",
+        "field": "javascript",
+        "pattern": "function\\s+esperarVerde|const\\s+esperarVerde\\s*=",
+        "message": "Define la funcion esperarVerde."
+      },
+      {
+        "type": "regex",
+        "field": "javascript",
+        "pattern": "new\\s+Promise\\s*\\(",
+        "message": "Crea y devuelve una Promise."
+      },
+      {
+        "type": "regex",
+        "field": "javascript",
+        "pattern": "setTimeout\\s*\\(",
+        "message": "Usa setTimeout para simular la espera."
+      },
+      {
+        "type": "regex",
+        "field": "javascript",
+        "pattern": "resolve\\s*\\(\\s*['\\\"]Verde['\\\"]\\s*\\)",
+        "message": "Resuelve la promesa con el texto Verde."
+      },
+      {
+        "type": "regex",
+        "field": "javascript",
+        "pattern": "\\.then\\s*\\(",
+        "message": "Consume la promesa con .then."
+      },
+      {
+        "type": "regex",
+        "field": "javascript",
+        "pattern": "\\.catch\\s*\\(",
+        "message": "Incluye .catch para errores."
+      }
+    ]
+  }
+}

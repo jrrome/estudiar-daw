@@ -1,0 +1,73 @@
+{
+  "id": "javascript-spread-arrays-reto",
+  "topic": "javascript",
+  "type": "build",
+  "title": "Spread y arrays declarativos",
+  "difficulty": "reto",
+  "estimatedMinutes": 34,
+  "publishedAt": "2026-05-18T15:36:22+02:00",
+  "prompt": "Ejercicio grande. Tienes dos arrays de alumnos. Crea un array combinado usando spread, sube dos puntos a quien tenga recuperacion usando map, quedate con aprobados usando filter, calcula la media con reduce y pinta en #lista los aprobados ordenados por nota descendente. No uses bucles for ni while.",
+  "notes": [
+    "Copia antes de ordenar para no mutar el array original.",
+    "El spread tambien sirve para clonar arrays antes de sort."
+  ],
+  "starterCode": {
+    "html": "<main>\n  <h1>Notas</h1>\n  <button id=\"calcular\">Calcular aprobados</button>\n  <p id=\"media\"></p>\n  <ol id=\"lista\"></ol>\n</main>",
+    "css": "body { font-family: system-ui, sans-serif; padding: 24px; background: #f5f7fb; }\nmain { max-width: 620px; margin: auto; }\nbutton { padding: 8px 12px; }\nli { margin: 8px 0; padding: 10px; background: white; border: 1px solid #d8e0eb; border-radius: 8px; }\n",
+    "javascript": "const grupoA = [\n  { nombre: 'Ana', nota: 7, recuperacion: false },\n  { nombre: 'Bruno', nota: 4, recuperacion: true },\n  { nombre: 'Celia', nota: 9, recuperacion: false }\n];\n\nconst grupoB = [\n  { nombre: 'Diego', nota: 3, recuperacion: true },\n  { nombre: 'Eva', nota: 6, recuperacion: false },\n  { nombre: 'Fran', nota: 5, recuperacion: false }\n];\n\nconst boton = document.querySelector('#calcular');\nconst media = document.querySelector('#media');\nconst lista = document.querySelector('#lista');\n\n// Combina, transforma, filtra, reduce, ordena y pinta sin bucles imperativos.\n"
+  },
+  "validation": {
+    "mode": "all",
+    "successMessage": "Arrays procesados de forma declarativa.",
+    "rules": [
+      {
+        "type": "regex",
+        "field": "javascript",
+        "pattern": "\\[\\s*\\.\\.\\.grupoA\\s*,\\s*\\.\\.\\.grupoB\\s*\\]",
+        "message": "Combina los dos grupos con spread."
+      },
+      {
+        "type": "regex",
+        "field": "javascript",
+        "pattern": "\\.map\\s*\\(",
+        "message": "Usa map para transformar las notas."
+      },
+      {
+        "type": "regex",
+        "field": "javascript",
+        "pattern": "\\.filter\\s*\\(",
+        "message": "Usa filter para quedarte con aprobados."
+      },
+      {
+        "type": "regex",
+        "field": "javascript",
+        "pattern": "\\.reduce\\s*\\(",
+        "message": "Usa reduce para calcular la media."
+      },
+      {
+        "type": "regex",
+        "field": "javascript",
+        "pattern": "\\.sort\\s*\\(",
+        "message": "Ordena los aprobados por nota."
+      },
+      {
+        "type": "regex",
+        "field": "javascript",
+        "pattern": "innerHTML|createElement|insertAdjacentHTML",
+        "message": "Pinta los resultados en el DOM."
+      },
+      {
+        "type": "notContains",
+        "field": "javascript",
+        "value": "for (",
+        "message": "No uses bucles for."
+      },
+      {
+        "type": "notContains",
+        "field": "javascript",
+        "value": "while (",
+        "message": "No uses bucles while."
+      }
+    ]
+  }
+}
