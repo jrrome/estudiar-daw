@@ -1,0 +1,54 @@
+{
+  "id": "html-radio-horario-base",
+  "topic": "html",
+  "type": "build",
+  "title": "Radios: solo un horario",
+  "difficulty": "base",
+  "estimatedMinutes": 10,
+  "publishedAt": "2026-05-19T11:00:17+02:00",
+  "prompt": "Crea un formulario para elegir horario de tutorias. Debe haber un fieldset con legend \"Horario preferido\" y tres botones radio con el mismo name=\"horario\" para manana, tarde y noche. Solo uno debe aparecer seleccionado por defecto con checked. Cada radio necesita label.",
+  "notes": [
+    "Los radio son excluyentes cuando comparten el mismo name.",
+    "checked marca la opcion inicial."
+  ],
+  "starterCode": {
+    "html": "<main>\n  <h1>Tutoria</h1>\n  <!-- Crea el grupo de radios -->\n</main>",
+    "css": "body { font-family: system-ui, sans-serif; padding: 24px; }\nform, fieldset { display: grid; gap: 10px; }\nfieldset { max-width: 360px; border: 1px solid #ccd6e4; border-radius: 8px; padding: 16px; }\n",
+    "javascript": ""
+  },
+  "validation": {
+    "mode": "all",
+    "successMessage": "Grupo de radios excluyente creado.",
+    "rules": [
+      {
+        "type": "domSelector",
+        "selector": "fieldset legend",
+        "message": "Agrupa los radios en un fieldset con legend."
+      },
+      {
+        "type": "contains",
+        "field": "html",
+        "value": "Horario preferido",
+        "message": "La legend debe indicar Horario preferido."
+      },
+      {
+        "type": "domSelector",
+        "selector": "input[type='radio'][name='horario'][value]",
+        "minCount": 3,
+        "message": "Crea tres radios con el mismo name=\"horario\"."
+      },
+      {
+        "type": "regex",
+        "field": "html",
+        "pattern": "input[^>]+type=[\"']radio[\"'][^>]+name=[\"']horario[\"'][^>]+checked|input[^>]+checked[^>]+type=[\"']radio[\"'][^>]+name=[\"']horario[\"']",
+        "message": "Marca una opcion inicial con checked."
+      },
+      {
+        "type": "domSelector",
+        "selector": "label[for]",
+        "minCount": 3,
+        "message": "Asocia un label a cada radio."
+      }
+    ]
+  }
+}

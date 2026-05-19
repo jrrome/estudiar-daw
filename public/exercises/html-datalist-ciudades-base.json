@@ -1,0 +1,51 @@
+{
+  "id": "html-datalist-ciudades-base",
+  "topic": "html",
+  "type": "build",
+  "title": "Datalist pequeno: ciudad sugerida",
+  "difficulty": "base",
+  "estimatedMinutes": 10,
+  "publishedAt": "2026-05-19T11:00:17+02:00",
+  "prompt": "Crea un formulario de busqueda de campus. Debe tener un input de texto con id=\"ciudad\" y list=\"ciudades\", un datalist con id=\"ciudades\" y al menos cuatro option con value. Anade tambien un boton de envio y asocia el input con un label.",
+  "notes": [
+    "datalist sugiere valores, pero el usuario puede escribir otro texto.",
+    "El atributo list del input debe coincidir con el id del datalist."
+  ],
+  "starterCode": {
+    "html": "<main>\n  <h1>Buscar campus</h1>\n  <!-- Completa el formulario con input + datalist -->\n</main>",
+    "css": "body { font-family: system-ui, sans-serif; padding: 24px; background: #f7f9fc; }\nmain { max-width: 440px; margin: auto; }\nform { display: grid; gap: 12px; }\ninput, button { padding: 8px 10px; }\n",
+    "javascript": ""
+  },
+  "validation": {
+    "mode": "all",
+    "successMessage": "Datalist conectado correctamente.",
+    "rules": [
+      {
+        "type": "domSelector",
+        "selector": "form",
+        "message": "Incluye un formulario."
+      },
+      {
+        "type": "domSelector",
+        "selector": "label[for='ciudad']",
+        "message": "Asocia un label al input ciudad."
+      },
+      {
+        "type": "domSelector",
+        "selector": "input#ciudad[list='ciudades']",
+        "message": "Crea el input ciudad con list=\"ciudades\"."
+      },
+      {
+        "type": "domSelector",
+        "selector": "datalist#ciudades option[value]",
+        "minCount": 4,
+        "message": "Incluye al menos cuatro opciones en el datalist."
+      },
+      {
+        "type": "domSelector",
+        "selector": "button[type='submit'], input[type='submit']",
+        "message": "Anade un boton de envio."
+      }
+    ]
+  }
+}

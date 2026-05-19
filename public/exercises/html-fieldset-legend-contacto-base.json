@@ -1,0 +1,65 @@
+{
+  "id": "html-fieldset-legend-contacto-base",
+  "topic": "html",
+  "type": "build",
+  "title": "Fieldset y legend: contacto",
+  "difficulty": "base",
+  "estimatedMinutes": 12,
+  "publishedAt": "2026-05-19T11:00:17+02:00",
+  "prompt": "Construye un formulario de contacto dividido en dos grupos semanticos. El primer fieldset debe tener legend \"Datos personales\" e incluir nombre y email. El segundo fieldset debe tener legend \"Mensaje\" e incluir asunto y textarea. Todos los campos deben tener label asociado.",
+  "notes": [
+    "fieldset agrupa controles relacionados.",
+    "legend da nombre accesible a cada grupo."
+  ],
+  "starterCode": {
+    "html": "<main>\n  <h1>Contacto</h1>\n  <!-- Crea aqui el formulario agrupado -->\n</main>",
+    "css": "body { font-family: system-ui, sans-serif; padding: 24px; background: #f5f7fb; }\nform { display: grid; gap: 16px; max-width: 520px; margin: auto; }\nfieldset { display: grid; gap: 10px; border: 1px solid #cfd8e3; border-radius: 8px; padding: 16px; }\ninput, textarea, button { padding: 8px 10px; }\n",
+    "javascript": ""
+  },
+  "validation": {
+    "mode": "all",
+    "successMessage": "Formulario agrupado con fieldset y legend.",
+    "rules": [
+      {
+        "type": "domSelector",
+        "selector": "form fieldset",
+        "minCount": 2,
+        "message": "Crea dos fieldset dentro del formulario."
+      },
+      {
+        "type": "domSelector",
+        "selector": "fieldset legend",
+        "minCount": 2,
+        "message": "Cada fieldset necesita su legend."
+      },
+      {
+        "type": "contains",
+        "field": "html",
+        "value": "Datos personales",
+        "message": "Incluye la legend Datos personales."
+      },
+      {
+        "type": "contains",
+        "field": "html",
+        "value": "Mensaje",
+        "message": "Incluye la legend Mensaje."
+      },
+      {
+        "type": "domSelector",
+        "selector": "label[for]",
+        "minCount": 4,
+        "message": "Asocia etiquetas con for a los cuatro campos."
+      },
+      {
+        "type": "domSelector",
+        "selector": "input[type='email']",
+        "message": "Usa input type email para el correo."
+      },
+      {
+        "type": "domSelector",
+        "selector": "textarea",
+        "message": "Incluye un textarea para el mensaje."
+      }
+    ]
+  }
+}

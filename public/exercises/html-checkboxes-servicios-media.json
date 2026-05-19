@@ -1,0 +1,65 @@
+{
+  "id": "html-checkboxes-servicios-media",
+  "topic": "html",
+  "type": "build",
+  "title": "Checkboxes: servicios opcionales",
+  "difficulty": "media",
+  "estimatedMinutes": 16,
+  "publishedAt": "2026-05-19T11:00:17+02:00",
+  "prompt": "Crea un formulario de matricula con un fieldset \"Servicios opcionales\". Debe tener cuatro checkboxes con el mismo name=\"servicios\" y values distintos: comedor, transporte, biblioteca y deportes. Los checkboxes deben poder seleccionarse a la vez. Anade tambien un campo obligatorio de nombre del alumno y un boton de envio.",
+  "notes": [
+    "A diferencia de radio, los checkboxes permiten varias opciones marcadas.",
+    "Usa value para que el servidor reciba que opcion se ha marcado."
+  ],
+  "starterCode": {
+    "html": "<main>\n  <h1>Matricula</h1>\n  <!-- Completa el formulario -->\n</main>",
+    "css": "body { font-family: system-ui, sans-serif; padding: 24px; background: #f8fafc; }\nform { display: grid; gap: 14px; max-width: 520px; margin: auto; }\nfieldset { display: grid; gap: 8px; border: 1px solid #cbd5e1; border-radius: 8px; padding: 16px; }\ninput[type='text'] { padding: 8px 10px; }\nbutton { width: fit-content; padding: 8px 12px; }\n",
+    "javascript": ""
+  },
+  "validation": {
+    "mode": "all",
+    "successMessage": "Servicios opcionales creados con checkboxes.",
+    "rules": [
+      {
+        "type": "domSelector",
+        "selector": "input[type='text'][name='alumno'][required]",
+        "message": "Incluye el nombre del alumno como campo obligatorio."
+      },
+      {
+        "type": "domSelector",
+        "selector": "fieldset legend",
+        "message": "Agrupa los servicios en un fieldset con legend."
+      },
+      {
+        "type": "contains",
+        "field": "html",
+        "value": "Servicios opcionales",
+        "message": "Incluye la legend Servicios opcionales."
+      },
+      {
+        "type": "domSelector",
+        "selector": "input[type='checkbox'][name='servicios'][value]",
+        "minCount": 4,
+        "message": "Crea cuatro checkboxes con name=\"servicios\"."
+      },
+      {
+        "type": "keywords",
+        "field": "html",
+        "values": ["comedor", "transporte", "biblioteca", "deportes"],
+        "minMatches": 4,
+        "message": "Usa values o textos para comedor, transporte, biblioteca y deportes."
+      },
+      {
+        "type": "domSelector",
+        "selector": "label[for]",
+        "minCount": 5,
+        "message": "Asocia labels al alumno y a cada checkbox."
+      },
+      {
+        "type": "domSelector",
+        "selector": "button[type='submit'], input[type='submit']",
+        "message": "Incluye un boton de envio."
+      }
+    ]
+  }
+}
